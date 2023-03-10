@@ -135,16 +135,16 @@ namespace Voluntario
             }
             return celula;
         }
-        static int CuentaVecinos(bool[,] matriz, int i, int j, int f, int _c, int condicionF, int condicionC)
+        static int CuentaVecinos(bool[,] matriz, int iContador, int jContador, int fila, int columna, int condicionFilas, int condicionColumnas)
         {
             int vivos = 0;
-            int c = _c;//para que se resete d para que no solo lo haga la primera vez (linea 156)
-            while (f < condicionF)
+            int _columna = columna;//para que se resete d para que no solo lo haga la primera vez (linea 156)
+            while (fila < condicionFilas)
             {
-                while (c < condicionC)
+                while (_columna < condicionColumnas)
                 {
-                    bool a = matriz[i + f, j + c];
-                    if (i + f == i && j + c == j) //da un valor erroneo al comparar el propio para no contarlo como relleno
+                    bool a = matriz[iContador + fila, jContador + _columna];
+                    if (iContador + fila == iContador && jContador + _columna == jContador) //da un valor erroneo al comparar el propio para no contarlo como relleno
                     {
                         a = false;
                     }
@@ -153,10 +153,10 @@ namespace Voluntario
                     {
                         vivos++;
                     }
-                    c++;
+                    _columna++;
                 }
-                c = _c;
-                f++;
+                _columna = columna;
+                fila++;
             }
             return vivos;
         }
